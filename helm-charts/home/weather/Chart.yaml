@@ -1,0 +1,4 @@
+apiVersion: v2
+name: weather-system
+description: Weather system for Home team
+version: 0.1.0
