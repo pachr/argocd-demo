@@ -1,0 +1,2 @@
+environment: prod
+clusterUrl: https://prod-cluster-url.example.com
