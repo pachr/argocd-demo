@@ -1,0 +1,7 @@
+springBoot1:
+  image: your-registry/home/weather-spring-boot-1:latest
+  replicas: 2
+
+batch1:
+  image: your-registry/home/weather-batch-1:latest
+  schedule: "0 * * * *"
