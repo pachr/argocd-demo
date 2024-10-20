@@ -4,6 +4,8 @@ metadata:
   name: argocd-projects
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
       repoURL: https://github.com/pachr/argocd-demo.git
@@ -12,7 +14,7 @@ spec:
       - path: "argocd-projects/*-project.yaml"
   template:
     metadata:
-      name: 'bootstrap-team1'
+      name: 'bootstrap-{{.projectName}}'
     spec:
       project: default
       source:
@@ -20,9 +22,9 @@ spec:
         targetRevision: master
         path: argocd-projects/argocd-project-chart
         helm:
-          releaseName: test
+          releaseName: '{{.projectName}}'
           valueFiles:
-          - ../home-project.yaml
+          - '../{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
