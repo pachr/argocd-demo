@@ -17,13 +17,12 @@ spec:
       project: default
       source:
         repoURL: https://github.com/pachr/argocd-demo.git
-        targetRevision: 0.1.0
-        path: argocd-projects
-        chart: argocd-project-chart
+        targetRevision: master
+        path: argocd-projects/argocd-project-chart
         helm:
           releaseName: test
           valueFiles:
-          - '{{.path.filename}}'
+          - ../'{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
