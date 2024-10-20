@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/pachr/argocd-demo.git
         targetRevision: HEAD
-        path: argocd-projects
+        path: argocd-projects/argocd-project-chart
         helm:
           releaseName: test
           valueFiles:
