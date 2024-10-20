@@ -12,7 +12,7 @@ spec:
       - path: "argocd-projects/*-project.yaml"
   template:
     metadata:
-      name: 'bootstrap-{{.projectName}}'
+      name: 'bootstrap-team1'
     spec:
       project: default
       source:
@@ -20,7 +20,7 @@ spec:
         targetRevision: HEAD
         path: argocd-projects
         helm:
-          releaseName: '{{.projectName}}'
+          releaseName: test
           valueFiles:
           - '{{.path.filename}}'
       destination:
