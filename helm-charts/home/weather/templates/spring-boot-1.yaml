@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-spring-boot-1
+spec:
+  replicas: {{ .Values.springBoot1.replicas }}
+  selector:
+    matchLabels:
+      app: weather-spring-boot-1
+  template:
+    metadata:
+      labels:
+        app: weather-spring-boot-1
+    spec:
+      containers:
+      - name: weather-spring-boot-1
+        image: {{ .Values.springBoot1.image }}
