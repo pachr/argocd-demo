@@ -1,0 +1,30 @@
+# team1-project.yaml
+projectName: team2-project
+description: "ArgoCD Project for Team 1"
+
+# Définir les sources de repositories autorisées pour ce projet
+sourceRepos:
+  - "https://github.com/your-org/team2-repo.git"
+  - "https://github.com/your-org/shared-repo.git"
+
+# Définir les clusters de destination autorisés
+destinations:
+  - namespace: "team2-*"
+    server: "https://kubernetes.default.svc"
+  - namespace: "shared"
+    server: "https://kubernetes.default.svc"
+
+# Définir les rôles et les permissions
+roles:
+  - name: developer
+    description: Developer role for Team 2
+    policies:
+      - p, proj:team1-project:developer, applications, get, team1-project/*, allow
+      - p, proj:team1-project:developer, applications, sync, team1-project/*, allow
+
+# Autres configurations spécifiques au projet
+clusterResourceWhitelist:
+  - group: ""
+    kind: "Namespace"
+  - group: "networking.k8s.io"
+    kind: "Ingress"
