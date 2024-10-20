@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: weather-batch-1
+spec:
+  schedule: {{ .Values.batch1.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: weather-batch-1
+            image: {{ .Values.batch1.image }}
+          restartPolicy: OnFailure
