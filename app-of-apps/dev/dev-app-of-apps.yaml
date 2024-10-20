@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/pachr/argocd-demo
     targetRevision: HEAD
-    path: applicationsets/product-teams/projects
+    path: applicationsets/projects
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
