@@ -22,7 +22,7 @@ spec:
         helm:
           releaseName: test
           valueFiles:
-          - ../'{{.path.filename}}'
+          - ../home-project.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
