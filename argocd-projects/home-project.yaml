@@ -24,7 +24,7 @@ roles:
 
 # Autres configurations spécifiques au projet
 clusterResourceWhitelist:
-  - group: "*"
+  - group: '""'
     kind: "Namespace"
   - group: "networking.k8s.io"
     kind: "Ingress"
