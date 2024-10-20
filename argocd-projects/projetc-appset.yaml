@@ -12,7 +12,7 @@ spec:
       - path: "argocd-projects/*-project.yaml"
   template:
     metadata:
-      name: '{{.metadata.name}}'
+      name: 'bootstrap-{{.projectName}}'
     spec:
       project: default
       source:
@@ -20,9 +20,9 @@ spec:
         targetRevision: HEAD
         path: argocd-projects
         helm:
-          releaseName: '{{.metadata.name}}'
+          releaseName: '{{.projectName}}'
           valueFiles:
-          - '{{.metadata.name}}.yaml'
+          - '{{.path.filename}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
