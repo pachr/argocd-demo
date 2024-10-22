@@ -29,6 +29,7 @@ spec:
         helm:
           valueFiles:
           - '../../env-values/{{environment}}.yaml'
+          - '{{path}}/values-{{environmnent}}.yaml'
       destination:
         server: '{{values.clusterUrl}}'
         namespace: 'home-{{path.basename}}'
