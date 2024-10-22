@@ -27,19 +27,15 @@ spec:
       project: default
       source:
         # Utilisation des valeurs du fichier argocd-specs.yaml via templating
-        {{- with (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)) }}
-        repoURL: {{ .repoUrl }}
-        chart: {{ .chart }}
-        targetRevision: {{ .version }}
-        {{- end }}
+        repoURL: '{{ (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)).repoUrl }}'
+        chart: '{{ (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)).chart }}'
+        targetRevision: '{{ (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)).version }}'
         helm:
           valueFiles:
             - values-{{env}}.yaml
       destination:
         server: https://kubernetes.default.svc
-        {{- with (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)) }}
-        namespace: {{ .targetNamespace }}
-        {{- end }}
+        namespace: '{{ (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)).targetNamespace }}'
       syncPolicy:
         automated:
           prune: true
