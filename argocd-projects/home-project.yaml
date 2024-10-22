@@ -1,6 +1,6 @@
 # team1-project.yaml
-projectName: team1-project
-description: "ArgoCD Project for Team 1"
+projectName: home-project
+description: "ArgoCD Project for Home
 
 # Définir les sources de repositories autorisées pour ce projet
 sourceRepos:
@@ -8,7 +8,7 @@ sourceRepos:
 
 # Définir les clusters de destination autorisés
 destinations:
-  - namespace: "team1-*"
+  - namespace: "home-*"
     server: "https://kubernetes.default.svc"
   - namespace: "shared"
     server: "https://kubernetes.default.svc"
@@ -18,8 +18,8 @@ roles:
   - name: developer
     description: Developer role for Team 1
     policies:
-      - p, proj:team1-project:developer, applications, get, team1-project/*, allow
-      - p, proj:team1-project:developer, applications, sync, team1-project/*, allow
+      - p, proj:home-project:developer, applications, get, home-project/*, allow
+      - p, proj:home-project:developer, applications, sync, home-project/*, allow
 
 # Autres configurations spécifiques au projet
 clusterResourceWhitelist:
