@@ -8,7 +8,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/your-org/root-gitops-repo.git
+              repoURL: https://github.com/pachr/argocd-demo.git
               revision: HEAD
               directories:
                 - path: applicationsets/shared-services/tooling/*
