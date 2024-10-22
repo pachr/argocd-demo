@@ -11,7 +11,7 @@ spec:
           repoURL: https://github.com/pachr/argocd-demo.git
           revision: HEAD
           directories:
-          - path: helm-charts/home/*
+          - path: helm-charts/**/*
       - list:
           elements:
           - environment: dev
@@ -19,7 +19,7 @@ spec:
           - environment: prod
   template:
     metadata:
-      name: 'home-{{path.basename}}-{{environment}}'
+      name: '{{index .path.segments 1}}-{{path.basename}}-{{environment}}'
     spec:
       project: home-project
       source:
