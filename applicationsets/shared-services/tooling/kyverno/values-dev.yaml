@@ -1,0 +1,60 @@
+# values-dev.yaml
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+
+# Configuration du webhook
+webhooks:
+  timeoutSeconds: 10
+
+# Configuration des reports
+reports:
+  enabled: true
+
+# Configuration des métriques Prometheus
+metricsService:
+  enabled: true
+
+# Configuration des logs
+logging:
+  format: text
+  level: info
+
+# Activation des features
+features:
+  policyExceptions: true
+  validatingAdmission: true
+  generateAdmission: true
+  policyReports: true
+
+# Configuration du mode d'application des policies
+# enforce: Les policies sont appliquées strictement
+# audit: Les violations sont seulement enregistrées
+validationFailureAction: enforce
+
+# Installation des policies par défaut
+policies:
+  enabled: true
+  annotations: {}
+  cpu: 100m
+  memory: 256Mi
+
+# Configuration des exclusions globales
+excludeKyvernoNamespace: true
+config:
+  excludeGroups: 
+    - system:serviceaccounts:kube-system
+  resourceFilters:
+    - "[Event,*,*]"
+    - "[APIService,*,*]"
+    - "[TokenReview,*,*]"
+    - "[SubjectAccessReview,*,*]"
+    - "[SelfSubjectAccessReview,*,*]"
+    - "[Binding,*,*]"
+    - "[ReplicaSet,*,*]"
