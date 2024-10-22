@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: shared-tools
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/your-org/root-gitops-repo.git
+              revision: HEAD
+              directories:
+                - path: applicationsets/shared-services/tooling/*
+                - exclude: applicationsets/shared-services/tooling/argocd-specs.yaml
+          - list:
+              elements:
+                - env: dev
+                - env: staging
+                - env: preprod
+                - env: prod
+  template:
+    metadata:
+      name: '{{path.basename}}-{{env}}'
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        # Utilisation des valeurs du fichier argocd-specs.yaml via templating
+        {{- with (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)) }}
+        repoURL: {{ .repoUrl }}
+        chart: {{ .chart }}
+        targetRevision: {{ .version }}
+        {{- end }}
+        helm:
+          valueFiles:
+            - values-{{env}}.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        {{- with (index (fromYaml (files.get "applicationsets/shared-services/tooling/argocd-specs.yaml")).tools (path.basename)) }}
+        namespace: {{ .targetNamespace }}
+        {{- end }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
