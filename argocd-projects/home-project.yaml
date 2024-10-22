@@ -4,8 +4,7 @@ description: "ArgoCD Project for Team 1"
 
 # Définir les sources de repositories autorisées pour ce projet
 sourceRepos:
-  - "https://github.com/your-org/team1-repo.git"
-  - "https://github.com/your-org/shared-repo.git"
+  - "https://github.com/argoproj/argocd-example-apps.git"
 
 # Définir les clusters de destination autorisés
 destinations:
