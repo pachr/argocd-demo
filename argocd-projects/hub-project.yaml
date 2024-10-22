@@ -1,15 +1,15 @@
-# team1-project.yaml
-projectName: team2-project
-description: "ArgoCD Project for Team 1"
+# hub-project.yaml
+projectName: hub-project
+description: "ArgoCD Project for Hub"
 
 # Définir les sources de repositories autorisées pour ce projet
 sourceRepos:
-  - "https://github.com/your-org/team2-repo.git"
+  - "https://github.com/your-org/hub-repo.git"
   - "https://github.com/your-org/shared-repo.git"
 
 # Définir les clusters de destination autorisés
 destinations:
-  - namespace: "team2-*"
+  - namespace: "hub-*"
     server: "https://kubernetes.default.svc"
   - namespace: "shared"
     server: "https://kubernetes.default.svc"
@@ -19,8 +19,8 @@ roles:
   - name: developer
     description: Developer role for Team 2
     policies:
-      - p, proj:team1-project:developer, applications, get, team1-project/*, allow
-      - p, proj:team1-project:developer, applications, sync, team1-project/*, allow
+      - p, proj:hub-project:developer, applications, get, hub-project/*, allow
+      - p, proj:hub-project:developer, applications, sync, hub-project/*, allow
 
 # Autres configurations spécifiques au projet
 clusterResourceWhitelist:
