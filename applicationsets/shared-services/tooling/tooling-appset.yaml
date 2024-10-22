@@ -12,7 +12,6 @@ spec:
               revision: HEAD
               directories:
                 - path: applicationsets/shared-services/tooling/*
-                - exclude: applicationsets/shared-services/tooling/argocd-specs.yaml
           - list:
               elements:
                 - env: dev
